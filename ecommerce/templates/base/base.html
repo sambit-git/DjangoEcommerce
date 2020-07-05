@@ -1,0 +1,18 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.css' %}" />
+    {% block basehead %} {% endblock %}
+    <title>{{title}}</title>
+  </head>
+  <body>
+    {% include 'snippets/navbar.html' with brandname='E-Commerce' %}
+    {% block content %} {% endblock %}
+    <script src="{% static 'bootstrap/jquery.js' %}"></script>
+    <script src="{% static 'bootstrap/popper.js' %}"></script>
+    <script src="{% static 'bootstrap/bootstrap.js' %}"></script>
+  </body>
+</html>

@@ -1,0 +1,8 @@
+<form action="{% url 'cart:update' %}" method="POST" id="update_cart" style="display: inline;">
+    {% csrf_token %}
+    {% if product in cart.products.all %}
+        <button class="btn btn-block btn-outline-danger" id="remove" type="button" value="remove" onclick="javascript:sendFormData(this, {{ product.id }})">Remove</button>
+    {% else %}
+        <button class="btn btn-block btn-outline-success" id="add" type="button" value="add" onclick="javascript:sendFormData(this, {{ product.id }})">Add</button>
+    {% endif %}
+</form>

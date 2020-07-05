@@ -1,0 +1,40 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <div class="contailer">
+        <div class="row">
+            <div class="col">
+                {% if query %}
+                    <p class="h4 text-center">Results for: {{ query }}</p>
+                    <hr>
+                {% else%}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            {% if object_list|length > 0 %}
+                {% for object in object_list %}
+                    <!-- {{ forloop.counter }} -->
+                    {% if not forloop.counter|divisibleby:3 %}
+                        <div class="col">
+                            {% include 'snippets/cards.html' with object=object %}
+                        </div>
+                    {% else %}
+                        <div class="col">
+                            {% include 'snippets/cards.html' with object=object %}
+                        </div>
+                        </div><div class="row">
+                    {% endif %}
+                {% endfor %}
+                </div>
+            {% else %}
+                <div class="col text-center">
+                    <p>No Products found... please try again!</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

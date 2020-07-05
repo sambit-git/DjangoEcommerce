@@ -1,0 +1,21 @@
+{% extends 'base/base.html' %}
+{% block content %}
+    <div class="container">
+        <h4>{{ object.title }}</h4>
+        <div class="row">
+            <div class="col text-muted">
+                Added: {{ object.timestamp|timesince }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                ${{ object.price }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                {{ object.description|linebreaks }}
+            </div>
+        </div>
+    </div>    
+{% endblock %}

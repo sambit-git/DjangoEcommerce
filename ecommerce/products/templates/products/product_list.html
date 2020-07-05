@@ -1,0 +1,18 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block basehead %}
+    <link rel="stylesheet" href="{% static 'products/styles/list.css' %}">
+{% endblock %}
+
+{% load static %}
+{% block content %}
+<div class="container">
+    {% for object in object_list %}
+        <div class="product">
+            {% include 'snippets/cards.html' with object=object cart=cart %}
+        </div>
+    {% endfor %}
+</div>
+
+<script src="{% static 'cart/scripts/update_cart.js' %}"></script>
+{% endblock content %}

@@ -1,0 +1,11 @@
+<div class="card m-2" >
+    {% if object.image %}
+        <img src="{{ object.image.url }}" alt="" class="card-img-top">
+    {% endif %}
+    <div class="card-body">
+        <h4 class="card-title">{{ object.title }}</h4>
+        <p class="card-text">{{ object.description|truncatewords:3 }}</p>
+        <a href="{{ object.get_absolute_url }}" class="btn btn-block  btn-secondary mb-1">View</a>
+        {% include 'snippets/update_cart_form.html' with product=object cart=cart %}
+    </div>
+</div>

@@ -1,0 +1,72 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block basehead %}
+    <link rel="stylesheet" href="{% static 'cart/styles/home.css' %}">
+{% endblock %}
+{% block content %}
+    <h1 class="text-center">Cart Home</h1>
+    <hr>
+    <div class="cart">
+        <div class="products-list">
+            {% for product in cart.products.all %}
+                <div class="container mb-1 p-2 border border-dark">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <a href="{{ product.get_absolute_url }}">
+                                <img src="{{ product.image.url }}" height="150" width="140">
+                            </a>
+                        </div>
+                        <div class="col-sm-3">
+                            {{ product.title }}
+                        </div>
+                        <div class="col-sm-3">
+                            {{ product.price }}
+                        </div>
+                        <div class="col-sm-3">
+                            {% include 'snippets/update_cart_form.html' %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="cart-value mr-5">
+            {% if request.session.cart_count > 0 %}
+                <div class="container">
+                    <div class="row h5 bg-light border border-primary p-2">
+                        <div class="col">
+                            <p>Sub Total: </p>
+                        </div>
+                        <div class="col">
+                            <p>&#8377; {{ cart.subtotal }}</p>
+                        </div>
+                    </div>
+                    <div class="row h5 bg-light border border-primary p-2">
+                        <div class="col">
+                            <p>Total: </p>
+                        </div>
+                        <div class="col">
+                            <p>&#8377; {{ cart.total }}</p>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="checkout">
+                    <a href="{% url 'cart:checkout' %}" class="btn btn-block font-weight-bold btn-outline-success" >Checkout</a>
+                </div>
+            {% else %}
+                <div class="container">
+                    <div class="row">
+                        <p class="h5">No Items in your cart!!!</p>
+                        <p>
+                            <a class="btn btn-outline-info" href="{% url 'products:list' %}">Browse Products</a>
+                        </p>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    
+    
+    
+    <script src="{% static 'cart/scripts/update_cart.js' %}"></script>
+{% endblock %}

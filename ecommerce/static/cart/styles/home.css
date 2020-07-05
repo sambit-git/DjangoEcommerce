@@ -1,0 +1,11 @@
+.cart{
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 4fr 1fr;
+}
+
+@media(max-width:1080px){
+    .cart{
+        display: block;
+    }
+}
